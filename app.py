@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 import InterfaseDBGame as db
 import os
 app = Flask(__name__)
