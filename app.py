@@ -10,13 +10,13 @@ def hello_world(rrr):
 @app.route('/sing_up', methods=['POST'])
 def sing_up_in_game():
     ret = request.json
-    return get_login_in_DB(ret["login"],ret["password"])
+    return db.get_login_in_DB(ret["login"],ret["password"])
 
 
 @app.route('/login_up',methods=['POST'])
 def login_up_in_game():
     ret = request.json
-    return get_login_in_DB(ret["login"],ret["password"])
+    return db.set_login_in_DB(ret["login"],ret["password"])
 
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT'))
