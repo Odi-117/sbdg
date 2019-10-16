@@ -13,7 +13,7 @@ def sing_up_in_game():
     return get_login_in_DB(ret["login"],ret["password"])
 
 
-@app.route('/sing_up',methods=['POST'])
+@app.route('/login_up',methods=['POST'])
 def login_up_in_game():
     ret = request.json
     return get_login_in_DB(ret["login"],ret["password"])
