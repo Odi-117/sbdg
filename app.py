@@ -5,12 +5,8 @@ from flask import Flask, request
 from InterfaseDBGame import WorkWithDB
 
 app = Flask(__name__)
-db = WorkWithDB({
-		"dbname":"sdbgDB",
-		"user":"admin",
-		"password" : "147753",
-		"host":"localhost"
-		})
+DB_URL = os.environ.get('DATABASE_URL')
+db = WorkWithDB(DB_URL)
 
 
 @app.route('/signup', methods=["POST"])
@@ -55,6 +51,6 @@ def select_top_10():
 		return str(db.select_top_10(number_level))
 
 if __name__ == '__main__':
-    # PORT = int(os.environ.get('PORT'))
-    app.run(host="localhost", port=5000, debug=True)
+    PORT = int(os.environ.get('PORT'))
+    app.run(host="0.0.0.0", port=PORT)
 
