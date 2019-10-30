@@ -40,7 +40,7 @@ class WorkWithUser:
                 return False
 
         else:
-            return "Login don`t exist"
+            return False
 
     def signup_in_game(self, login:str, password:str):
         record = self.tab_users.req_select_db("name_user",
@@ -63,7 +63,7 @@ class WorkWithUser:
             self.tab_users.req_delete_db("name_user = '{}'".format(login))
             return True
         else:
-            return "Don`t right password"
+            return False
 
     def update_score(self, login:str, score_user:int, number_level:int):
         set_value = "score = {}, date_add = now()".format(score_user)
