@@ -39,7 +39,7 @@ def signin():
 			resp.headers['Key-session-server'] = session.create_session()
 			return resp
 		else:
-			return False
+			return "False"
 
 @app.route('/update_score', methods=["POST"])
 @dec_check_session
