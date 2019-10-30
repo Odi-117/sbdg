@@ -27,8 +27,7 @@ def signup():
 		login = request.form["login"]
 		password = request.form["password"]
 
-		#return str(user.signup_in_game(login, password))
-		return os.environ.get('KEY_GENERATION')
+		return str(user.signup_in_game(login, password))
  
 @app.route('/signin', methods=["POST"])
 def signin():
@@ -40,7 +39,7 @@ def signin():
 			resp.headers['Key-session-server'] = session.create_session()
 			return resp
 		else:
-			return False
+			return "False"
 
 @app.route('/update_score', methods=["POST"])
 @dec_check_session
