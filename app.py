@@ -79,6 +79,14 @@ def select_top_10():
 		number_level = request.form["number_level"]
 
 		return str(user.select_top_10(number_level))
+	
+@app.route('/max_number_level', methods=["POST"])
+@dec_check_session
+def max_number_level():
+	if request.method == "POST":
+		login = read_users_date("login")
+
+		return str(user.max_number_level(login))
 
 @app.route('/delete_account', methods=["POST"])
 @dec_check_session
