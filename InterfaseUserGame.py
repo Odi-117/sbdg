@@ -101,6 +101,13 @@ class WorkWithUser:
         except IndexError:
             return False
 
+    def max_number_level(self, login):
+        id_user = self.tab_users.req_select_db("id", 
+                "name_user = '{}'".format(login))
+        record = self.tab_rating.req_select_db("max(number_level)",
+                 "id_user = {}".format(id_user[0][0]))
+        return record[0][0]
+
 
 
 
