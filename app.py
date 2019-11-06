@@ -17,7 +17,7 @@ def dec_check_session(func):
 		if session.check_session(key):
 			return func()
 		else:
-			return "Wrong key!!!"
+			return "WK" #Wrong key!!!
 	wrapper.__name__ = func.__name__
 	return wrapper
 
