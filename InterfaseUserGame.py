@@ -41,7 +41,7 @@ class WorkWithUser:
     def validation_of_login_password(self, login, password):
         if (self.check_text_char(login) and
                 self.check_text_char(password) and
-                self.check_text_len(login, 6) and
+                self.check_text_len(login, 5) and
                 self.check_text_len(password, 6)):
             return True
 
