@@ -13,7 +13,7 @@ session = WorkWithSession(os.environ.get('KEY_GENERATION'))
 # decorator check session to existens
 def dec_check_session(func): 
 	def wrapper(*args, **kwargs):
-		key = request.headers.get("Key-session-client")
+		key = request.headers.get("Key-Session-Client")
 		if session.check_session(key):
 			return func()
 		else:
@@ -23,7 +23,7 @@ def dec_check_session(func):
 
 # read users date from session file
 def read_users_date(key_json):
-	key = request.headers.get("Key-session-client")
+	key = request.headers.get("Key-Session-Client")
 	json_session = session.read_from_session(key)
 	return json_session[key_json]
 
@@ -43,8 +43,8 @@ def signin():
 		if user.signin_in_game(login, password):
 			resp = Response("True")
 			key_session = session.create_session()
-			resp.headers['Key-session-server'] = key_session
-			resp.headers["max-number-level"] = user.max_number_level(
+			resp.headers['Key-Session-Server'] = key_session
+			resp.headers["Max-Number-Level"] = user.max_number_level(
 				login)
 			text_json = {"login":login}
 			session.write_in_session(key_session, text_json)
