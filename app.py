@@ -44,6 +44,8 @@ def signin():
 			resp = Response("True")
 			key_session = session.create_session()
 			resp.headers['Key-session-server'] = key_session
+			resp.headers["max-number-level"] = user.max_number_level(
+				login)
 			text_json = {"login":login}
 			session.write_in_session(key_session, text_json)
 
