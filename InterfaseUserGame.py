@@ -19,10 +19,40 @@ class WorkWithUser:
             {}, {}""".format(id_user[0][0], number_level)
         self.tab_rating.req_insert_db(values)
 
+    def check_text_char(self, text):
+        characters = """ABCDEFGHIKLMNOPQRSTVXYZ
+            abcdefghiklmnopqrstvxyz1234567890"""
+        for i in text:
+            find = False
+            for j in characters:
+                if i == j:
+                    find = True
+                    break
+            if not find:
+                return False
+        return True
+
+    def check_text_len(self, text, len_text):
+        if len(text) < len_text:
+            return False
+        else:
+            return True
+
+    def validation_of_login_password(self, login, password):
+        if (self.check_text_char(login) and
+                self.check_text_char(password) and
+                self.check_text_len(login, 6) and
+                self.check_text_len(password, 6)):
+            return True
+
+        else:
+            return False
+
     def signup_in_game(self, login, password):
         record = self.tab_users.req_select_db("name_user",
                 "name_user = '{}'".format(login))
-        if not record:
+        if not record and self.validation_of_login_password(login, 
+                password):
             values = "nextval('users_id_seq'),'{}','{}'".format(login,
                  password)
             self.tab_users.req_insert_db(values)
