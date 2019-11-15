@@ -96,6 +96,13 @@ class WorkWithUser:
             return False
 
     def update_score(self, login, score_user, number_level):
+        text_where_max_rating = """id_user = (select id from users
+         where name_user = '{}') and number_level = {}""".format(
+                login, number_level)
+        socre_from_db = self.tab_rating.req_select_db(
+                "score", text_where_max_rating)
+        if socre_from_db[0][0] >= int(score_user):
+            return
         set_value = "score = {}, date_add = now()".format(score_user)
         where_request = """
                 id_user = (select id from users where name_user = '{}')
