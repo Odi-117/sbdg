@@ -15,9 +15,19 @@ class WorkWithUser:
     def create_rating_user(self, login, number_level):
         where_request = "name_user = '{}'".format(login)
         id_user = self.tab_users.req_select_db("id", where_request)
-        values = """nextval('rating_id_seq'), 0, now(),
-            {}, {}""".format(id_user[0][0], number_level)
-        self.tab_rating.req_insert_db(values)
+        record_existence = self.tab_rating.req_select_db("*",
+            "id_user = '{}' and number_level = {}".format(
+            id_user[0][0], number_level))
+
+        if not record_existence:
+            values = """nextval('rating_id_seq'), 0, now(),
+                {}, {}""".format(id_user[0][0], number_level)
+            self.tab_rating.req_insert_db(values)
+
+            return True
+
+        else:
+            return False
 
     def check_text_char(self, text):
         characters = """ABCDEFGHIKLMNOPQRSTVXYZ
