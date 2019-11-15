@@ -64,6 +64,16 @@ def update_score():
 		user.update_score(login, score_user, number_level)
 
 		return ""
+	
+@app.route('/create_rating', methods=["POST"])
+@dec_check_session
+def create_rating():
+	if request.method == "POST":
+		login = read_users_date("login")
+		number_level = request.form["number_level"]
+		user.create_rating_user(login, number_level)
+
+		return ""
 
 @app.route('/prevate_score', methods=["POST"])
 @dec_check_session
