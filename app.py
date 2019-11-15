@@ -71,9 +71,8 @@ def create_rating():
 	if request.method == "POST":
 		login = read_users_date("login")
 		number_level = request.form["number_level"]
-		user.create_rating_user(login, number_level)
-
-		return ""
+		
+		return str(user.create_rating_user(login, number_level))
 
 @app.route('/prevate_score', methods=["POST"])
 @dec_check_session
